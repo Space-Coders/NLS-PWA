@@ -1,0 +1,8 @@
+{
+    "conventionalCommits.scopes": [
+        "data",
+        "core",
+        "layout",
+        "auth"
+    ]
+}
