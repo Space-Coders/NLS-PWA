@@ -1,11 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DataComponent } from './data.component';
 
 @NgModule({
-  imports: [
-    CommonModule
-  ],
-  declarations: [DataComponent]
+    imports: [CommonModule],
+    declarations: [],
 })
-export class DataModule { }
+export class DataModule {}
