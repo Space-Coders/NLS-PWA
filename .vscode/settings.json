@@ -8,6 +8,7 @@
         "base",
         "dashboard",
         "notifications",
-        "schedules"
+        "schedules",
+        "labs"
     ]
 }

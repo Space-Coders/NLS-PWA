@@ -86,15 +86,39 @@
                             </button>
                         </div>
                     </div>
+                </div>
+            </div>
 
-                    <!-- <div class="row">
-                        <div class="col">
-                            <button class="btn btn-outline-success btn-sm btn-block-sm">Accept</button>
-                            <button class="btn btn-outline-danger btn-sm ml-0 ml-md-2 mt-2 mt-md-0 btn-block-sm">
-                                Reject
+            <hr />
+
+            <div class="row pt-4">
+                <div class="col-md-6">
+                    <form (ngSubmit)="requestSoftware()" [formGroup]="softwareForm">
+                        <app-text-input
+                            [formControl]="f['software']"
+                            [label]="'Required Software'"
+                            [placeholder]="'Enter required software'"
+                        ></app-text-input>
+                        <app-checkbox-input
+                            [formControl]="f['adHoc']"
+                            [label]="'Auto request until module ends'"
+                        ></app-checkbox-input>
+                        <div class="form-group mt-4">
+                            <button
+                                [disabled]="!softwareForm.valid || isFormProcessing"
+                                type="submit"
+                                class="btn btn-primary"
+                            >
+                                <span
+                                    *ngIf="isFormProcessing"
+                                    class="spinner-border spinner-border-sm"
+                                    role="status"
+                                    aria-hidden="true"
+                                ></span>
+                                Request Software
                             </button>
                         </div>
-                    </div> -->
+                    </form>
                 </div>
             </div>
         </div>

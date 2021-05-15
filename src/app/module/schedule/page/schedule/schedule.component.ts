@@ -1,7 +1,6 @@
 // core
 import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { format } from 'date-fns';
 
 // schema
 import { ISchedule } from '@data/schema/schedule';

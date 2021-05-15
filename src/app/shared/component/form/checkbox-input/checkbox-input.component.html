@@ -1,0 +1,17 @@
+<div [class]="customClasses.formGroup">
+    <div class="checkbox">
+        <label [class]="customClasses.label">
+            <input
+                class="align-middle"
+                [class.is-invalid]="ngControl.touched && ngControl.invalid"
+                type="{{ type }}"
+                [formControl]="ngControl.control"
+                [checked]="checked"
+                (change)="handleCheckboxChange($event)"
+                (click)="handleCheckboxChange($event)"
+            />
+            {{ label }}
+        </label>
+    </div>
+    <div *ngIf="ngControl.control.errors?.required" class="invalid-feedback">Please check the {{ label }}</div>
+</div>

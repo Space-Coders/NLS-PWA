@@ -15,6 +15,7 @@ import { BootstrapModule } from './bootstrap.module';
 
 // components
 import { TextInputComponent } from './component/form/text-input/text-input.component';
+import { CheckboxInputComponent } from './component/form/checkbox-input/checkbox-input.component';
 import { SizeDetectorComponent } from './component/size-detector/size-detector.component';
 
 @NgModule({
@@ -31,7 +32,7 @@ import { SizeDetectorComponent } from './component/size-detector/size-detector.c
         DataTablesModule,
         BootstrapModule,
     ],
-    declarations: [TextInputComponent, SizeDetectorComponent],
+    declarations: [TextInputComponent, CheckboxInputComponent, SizeDetectorComponent],
     exports: [
         CommonModule,
         FormsModule,
@@ -42,6 +43,7 @@ import { SizeDetectorComponent } from './component/size-detector/size-detector.c
         CalendarModule,
         BootstrapModule,
         TextInputComponent,
+        CheckboxInputComponent,
         SizeDetectorComponent,
     ],
 })

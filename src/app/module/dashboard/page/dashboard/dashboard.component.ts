@@ -1,6 +1,6 @@
 // core
 import { Component, ChangeDetectionStrategy, ViewChild, TemplateRef, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { startOfDay, endOfDay, subDays, addDays, endOfMonth, isSameDay, isSameMonth, addHours } from 'date-fns';
 import { CalendarEvent, CalendarEventAction, CalendarEventTimesChangedEvent, CalendarView } from 'angular-calendar';
@@ -65,51 +65,12 @@ export class DashboardComponent implements OnInit {
 
     refresh: Subject<any> = new Subject();
 
-    events: CalendarEvent[] = [
-        // {
-        //     start: subDays(startOfDay(new Date()), 1),
-        //     end: addDays(new Date(), 1),
-        //     title: 'A 3 day event',
-        //     color: colors.red,
-        //     actions: this.actions,
-        //     allDay: true,
-        //     resizable: {
-        //         beforeStart: true,
-        //         afterEnd: true,
-        //     },
-        //     draggable: true,
-        // },
-        // {
-        //     start: startOfDay(new Date()),
-        //     title: 'An event with no end date',
-        //     color: colors.yellow,
-        //     actions: this.actions,
-        // },
-        // {
-        //     start: subDays(endOfMonth(new Date()), 3),
-        //     end: addDays(endOfMonth(new Date()), 3),
-        //     title: 'A long event that spans 2 months',
-        //     color: colors.blue,
-        //     allDay: true,
-        // },
-        // {
-        //     start: addHours(startOfDay(new Date()), 2),
-        //     end: addHours(new Date(), 2),
-        //     title: 'A draggable and resizable event',
-        //     color: colors.yellow,
-        //     actions: this.actions,
-        //     resizable: {
-        //         beforeStart: true,
-        //         afterEnd: true,
-        //     },
-        //     draggable: true,
-        // },
-    ];
+    events: CalendarEvent[] = [];
 
     // activeDayIsOpen: boolean = true;
     activeDayIsOpen: boolean = false;
 
-    constructor(private route: ActivatedRoute) {}
+    constructor(private route: ActivatedRoute, private router: Router) {}
 
     ngOnInit() {
         this.route.data.subscribe((data) => {
@@ -121,6 +82,9 @@ export class DashboardComponent implements OnInit {
                 title: `${schedule.module} - ${schedule.batch} - ${schedule.hall}`,
                 color: colors.yellow,
                 actions: this.actions,
+                meta: {
+                    scheduleId: schedule.id,
+                },
             }));
 
             this.events = [...this.events, ...ev];
@@ -154,6 +118,7 @@ export class DashboardComponent implements OnInit {
 
     handleEvent(action: string, event: CalendarEvent): void {
         this.modalData = { event, action };
+        this.router.navigate(['/schedules/', event.meta.scheduleId]);
         // this.modal.open(this.modalContent, { size: 'lg' });
     }
 
