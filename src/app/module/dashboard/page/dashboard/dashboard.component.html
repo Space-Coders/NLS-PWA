@@ -99,7 +99,7 @@
                 <th>Secondary color</th>
                 <th>Starts at</th>
                 <th>Ends at</th>
-                <th>Remove</th>
+                <th>Accept / Reject Lecture</th>
             </tr>
         </thead>
 
@@ -145,9 +145,18 @@
                     />
                 </td>
                 <td>
-                    <button class="btn btn-primary" (click)="deleteEvent(event)">Accept</button>
-                    <button class="btn btn-danger" (click)="deleteEvent(event)">Reject</button>
-
+                    <div *ngIf="event.meta.ScheduleStatus=='INITIATED'">
+                        <button class="btn btn-primary" (click)="acceptSchedule(event)">Accept</button>
+                    </div>                   
+                    <div *ngIf="event.meta.ScheduleStatus=='INITIATED'">
+                        <button class="btn btn-danger" (click)="rejectSchedule(event)">Reject</button>
+                    </div>
+                    <div *ngIf="event.meta.ScheduleStatus=='ACCEPTED'">
+                     <button class="btn btn-success">ACCEPTED</button>
+                    </div>
+                    <div *ngIf="event.meta.ScheduleStatus=='REJECTED'">
+                        <button class="btn btn-warning">REJECTED</button>
+                       </div>
                 </td>
             </tr>
         </tbody>

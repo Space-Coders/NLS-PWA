@@ -2,6 +2,7 @@ import { Injectable, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { ISchedule } from '@data/schema/schedule';
+import { ScheduleStatus } from '@data/enum/scheduleStatus';
 
 @Injectable({
     providedIn: 'root',
@@ -18,5 +19,9 @@ export class ScheduleService {
 
     getSchedule(id: number) {
         return this.http.get<ISchedule>(this.baseUrl + `/schedules/${id}`);
+    }
+
+    updateSchedule(id: number, status: ScheduleStatus){
+        return this.http.patch<ISchedule>(this.baseUrl + `/schedules/${id}/status`, {status});
     }
 }
