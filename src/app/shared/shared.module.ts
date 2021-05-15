@@ -8,6 +8,7 @@ import { RouterModule } from '@angular/router';
 //import { NgScrollbarModule } from 'ngx-scrollbar';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import { DataTablesModule } from 'angular-datatables';
 
 // bootstrap module
 import { BootstrapModule } from './bootstrap.module';
@@ -22,11 +23,12 @@ import { SizeDetectorComponent } from './component/size-detector/size-detector.c
         FormsModule,
         ReactiveFormsModule,
         RouterModule,
-//NgScrollbarModule,
+        //NgScrollbarModule,
         CalendarModule.forRoot({
             provide: DateAdapter,
             useFactory: adapterFactory,
         }),
+        DataTablesModule,
         BootstrapModule,
     ],
     declarations: [TextInputComponent, SizeDetectorComponent],
@@ -35,7 +37,8 @@ import { SizeDetectorComponent } from './component/size-detector/size-detector.c
         FormsModule,
         ReactiveFormsModule,
         RouterModule,
-       // NgScrollbarModule,
+        // NgScrollbarModule,
+        DataTablesModule,
         CalendarModule,
         BootstrapModule,
         TextInputComponent,
