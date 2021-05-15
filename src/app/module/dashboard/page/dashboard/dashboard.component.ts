@@ -179,7 +179,7 @@ export class DashboardComponent implements OnInit {
         console.log("lecture accepted")
     }
 
-    rejectchedule(){
+    rejectSchedule(){
         console.log("lecture rejected")
     }
 
