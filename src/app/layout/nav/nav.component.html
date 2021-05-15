@@ -1,3 +1,111 @@
-<p>
-  nav works!
-</p>
+<nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
+    <a class="navbar-brand" routerLink="/dashboard">
+        <img
+            src="assets/images/common/nibm-logo.png"
+            width="100"
+            height="100"
+            class="img-fluid"
+            alt=""
+            loading="lazy"
+        />
+    </a>
+
+    <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbar-dashbaord"
+        aria-controls="navbar-dashbaord"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+        (click)="onNavbarTogglerClick()"
+    >
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbar-dashbaord" [collapse]="isNavMenuCollapsed" [isAnimated]="true">
+        <ul class="navbar-nav mr-auto" *ngIf="authService.currentUser$ | async as user">
+            <li class="nav-item active">
+                <a class="nav-link" routerLink="/dashboard">NLS <span class="sr-only">(current)</span></a>
+            </li>
+
+            <!-- mobile navigation/user profile -->
+            <div *ngIf="authService.currentUser$ | async as user" class="d-block d-lg-none">
+                <li class="divider dropdown-divider"></li>
+
+                <!-- navigation -->
+                <li class="nav-item">
+                    <a routerLink="/dashboard" routerLinkActive="active" class="nav-link">Home</a>
+                </li>
+
+                <li class="nav-item">
+                    <a routerLink="/schedules" routerLinkActive="active" class="nav-link"> Schedules </a>
+                </li>
+
+                <li class="nav-item">
+                    <a routerLink="/notifications" routerLinkActive="active" class="nav-link"> Notifications </a>
+                </li>
+                <!-- //.navigation -->
+
+                <li class="divider dropdown-divider"></li>
+
+                <!-- profile -->
+                <li class="nav-item">
+                    <div class="row">
+                        <div class="col-auto">
+                            <img
+                                class="rounded-circle my-2 my-sm-0"
+                                role="button"
+                                id="user-profile"
+                                width="40"
+                                height="40"
+                                src="assets/images/auth/userimg-placeholder.png"
+                            />
+                        </div>
+                        <div class="col text-right my-auto">
+                            <p class="small text-muted mb-0">{{ user.user.firstName }} {{ user.user.lastName }}</p>
+                            <p class="small text-muted mb-0">{{ user.user.email }}</p>
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a [attr.href]="null" class="nav-link" (click)="logout()"> Sign out </a>
+                </li>
+                <!-- //. profile -->
+            </div>
+            <!-- //.mobile navigation/user profile -->
+        </ul>
+    </div>
+
+    <div class="btn-group" dropdown *ngIf="authService.currentUser$ | async as user" class="d-none d-md-block">
+        <img
+            class="rounded-circle my-2 my-sm-0"
+            role="button"
+            id="user-profile"
+            width="40"
+            height="40"
+            src="assets/images/auth/userimg-placeholder.png"
+            dropdownToggle
+        />
+        <ul
+            id="dropdown-user-actions"
+            *dropdownMenu
+            class="dropdown-menu dropdown-menu-right"
+            role="menu"
+            aria-labelledby="button-user-actions"
+        >
+            <li role="menuitem">
+                <a class="dropdown-item disabled" [attr.href]="null">
+                    {{ user.user.firstName }} {{ user.user.lastName }}
+                </a>
+            </li>
+            <li role="menuitem">
+                <a class="dropdown-item disabled" [attr.href]="null">{{ user.user.email }}</a>
+            </li>
+            <li class="divider dropdown-divider"></li>
+            <li role="menuitem">
+                <a class="dropdown-item cursor-pointer" (click)="logout()" [attr.href]="null">Sign out</a>
+            </li>
+        </ul>
+    </div>
+</nav>
