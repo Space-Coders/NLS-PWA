@@ -51,6 +51,7 @@ export class LoginComponent implements OnInit {
 
         this.authService.login(this.loginForm.value).subscribe(
             (response) => {
+                console.log('ss');
                 this.router.navigateByUrl(this.returnUrl);
                 this.isFormProcessing = false;
             },

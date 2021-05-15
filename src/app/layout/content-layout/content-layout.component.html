@@ -1,3 +1,13 @@
-<p>
-  content-layout works!
-</p>
+<app-nav></app-nav>
+
+<app-side-nav></app-side-nav>
+
+<div class="container-fluid sidebar-space" [class.expanded]="isSidebarExpanded" [class.collapsed]="!isSidebarExpanded">
+    <div class="col">
+        <div class="row">
+            <div class="col-md-12 dashboard-content-container">
+                <router-outlet></router-outlet>
+            </div>
+        </div>
+    </div>
+</div>

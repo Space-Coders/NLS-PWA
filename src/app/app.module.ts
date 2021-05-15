@@ -10,6 +10,8 @@ import { SharedModule } from '@shared/shared.module';
 // layouts
 import { ContentLayoutComponent } from '@layout/content-layout/content-layout.component';
 import { AuthLayoutComponent } from '@layout/auth-layout/auth-layout.component';
+import { NavComponent } from '@layout/nav/nav.component';
+import { SideNavComponent } from '@layout/side-nav/side-nav.component';
 
 // components
 import { AppComponent } from './app.component';
@@ -25,6 +27,8 @@ import { AppRoutingModule } from './app-routing.module';
         // layouts
         ContentLayoutComponent,
         AuthLayoutComponent,
+        NavComponent,
+        SideNavComponent,
     ],
     imports: [
         // core modules
