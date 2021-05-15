@@ -1,0 +1,55 @@
+<div [class]="customClasses.formGroup">
+    <ng-container *ngIf="!inputGroupAppendEnabled">
+        <label [class]="customClasses.label">{{ label }}</label>
+        <input
+            [class.is-invalid]="ngControl.touched && ngControl.invalid"
+            type="{{ type }}"
+            [class]="customClasses.input"
+            [formControl]="ngControl.control"
+            placeholder="{{ placeholder }}"
+        />
+    </ng-container>
+    <ng-container *ngIf="inputGroupAppendEnabled">
+        <label [class]="customClasses.label">{{ label }}</label>
+        <div class="input-group" [class.is-invalid]="ngControl.touched && ngControl.invalid">
+            <input
+                [class.is-invalid]="ngControl.touched && ngControl.invalid"
+                type="{{ type }}"
+                [class]="customClasses.input"
+                [formControl]="ngControl.control"
+                placeholder="{{ placeholder }}"
+            />
+            <div class="input-group-append">
+                <div class="input-group-text">{{ inputGroupAppendText }}</div>
+            </div>
+        </div>
+    </ng-container>
+
+    <div *ngIf="ngControl.control.errors?.required" class="invalid-feedback">Please enter a {{ label }}</div>
+    <div *ngIf="ngControl.control.errors?.min" class="invalid-feedback">
+        {{ label }} must be at least {{ ngControl.control.errors.min['min'] }}
+    </div>
+    <div *ngIf="ngControl.control.errors?.max" class="invalid-feedback">
+        {{ label }} must be at most {{ ngControl.control.errors.max['max'] }}
+    </div>
+    <div *ngIf="ngControl.control.errors?.email" class="invalid-feedback">{{ label }} is not properly formatted</div>
+    <div *ngIf="ngControl.control.errors?.NoPasswordMatch" class="invalid-feedback">Passwords do not match</div>
+    <div *ngIf="ngControl.control.errors?.hasNumber" class="invalid-feedback">
+        {{ label }} must contain at least 1 number
+    </div>
+    <div *ngIf="ngControl.control.errors?.hasSmallCase" class="invalid-feedback">
+        {{ label }} must contain at least 1 lowercase letter
+    </div>
+    <div *ngIf="ngControl.control.errors?.hasCapitalCase" class="invalid-feedback">
+        {{ label }} must contain at least 1 capital letter
+    </div>
+    <div *ngIf="ngControl.control.errors?.hasSpecialCharacters" class="invalid-feedback">
+        {{ label }} must contain at least 1 special character
+    </div>
+    <div *ngIf="ngControl.control.errors?.hasRestrictedCharacters" class="invalid-feedback">
+        {{ label }} shouldn't contain restricted characters
+    </div>
+    <div *ngIf="ngControl.control.errors?.hasExistingReference" class="invalid-feedback">
+        {{ label }} reference already exists
+    </div>
+</div>
