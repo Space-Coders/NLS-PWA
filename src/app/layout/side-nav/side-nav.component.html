@@ -1,3 +1,44 @@
-<p>
-  side-nav works!
-</p>
+<!-- sidebar -->
+<div class="sidebar nav-fixed-top">
+    <div
+        id="sidebar-container"
+        class="sidebar-container d-none d-md-block"
+        [class.sidebar-expanded]="isSidebarExpanded"
+        [class.sidebar-collapsed]="!isSidebarExpanded"
+    >
+        <div class="sidebar-toggle" data-toggle="sidebar-colapse" (click)="toggleSidebarExpand()">
+            <span
+                class="mdi mdi-menu"
+                [class.mdi-menu]="!isSidebarExpanded"
+                [class.mdi-chevron-left]="isSidebarExpanded"
+            ></span>
+        </div>
+        <!-- <ng-scrollbar class="sidebar-scroll" thumbClass="white-scrollbars" pointerEventsMethod="scrollbar"> -->
+        <!-- List Group -->
+        <ul class="list-group" *ngIf="authService.currentUser$ | async as user">
+            <a routerLink="/dashboard" class="list-group-item list-group-item-action" routerLinkActive="active">
+                <div class="d-flex w-100 justify-content-start align-items-center">
+                    <span class="mdi mdi-home-outline mr-3"></span>
+                    <span class="menu-collapsed">Home</span>
+                </div>
+            </a>
+
+            <a routerLink="/schedules" class="list-group-item list-group-item-action" routerLinkActive="active">
+                <div class="d-flex w-100 justify-content-start align-items-center">
+                    <span class="mdi mdi-calendar mr-3"></span>
+                    <span class="menu-collapsed">Schedules</span>
+                </div>
+            </a>
+
+            <a routerLink="/notifications" class="list-group-item list-group-item-action" routerLinkActive="active">
+                <div class="d-flex w-100 justify-content-start align-items-center">
+                    <span class="mdi mdi-bell-outline mr-3"></span>
+                    <span class="menu-collapsed">Notifications</span>
+                </div>
+            </a>
+        </ul>
+        <!-- //. List Group-->
+        <!-- </ng-scrollbar> -->
+    </div>
+</div>
+<!--//. sidebar -->
