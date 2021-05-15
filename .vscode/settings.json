@@ -3,6 +3,9 @@
         "data",
         "core",
         "layout",
-        "auth"
+        "auth",
+        "shared",
+        "base",
+        "dashboard"
     ]
 }

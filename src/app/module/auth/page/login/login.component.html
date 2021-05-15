@@ -1,3 +1,48 @@
-<p>
-  login works!
-</p>
+<div class="container p-5">
+    <div class="row px-5">
+        <div class="col">
+            <img src="/assets/images/common/nibm-logo.png" alt="" loading="lazy" class="img-fluid" width="200" />
+        </div>
+    </div>
+    <div class="row pt-5 px-5">
+        <div class="col">
+            <p class="small text-muted mb-0">Welcome back</p>
+            <h4 class="text-primary">Login to your account</h4>
+        </div>
+    </div>
+    <div class="row py-4 px-5">
+        <div class="col">
+            <form (ngSubmit)="login()" [formGroup]="loginForm">
+                <div class="text-danger"></div>
+                <app-text-input
+                    [formControl]="f['email']"
+                    [label]="'Username'"
+                    [placeholder]="'Enter username'"
+                ></app-text-input>
+                <app-text-input
+                    [formControl]="f['password']"
+                    [label]="'Password'"
+                    [placeholder]="'Enter password'"
+                    [type]="'password'"
+                ></app-text-input>
+                <a routerLink="/auth/forgot-password">Forgot Password?</a>
+                <div class="form-group mt-4">
+                    <button
+                        [disabled]="!loginForm.valid || isFormProcessing"
+                        type="submit"
+                        class="btn btn-primary w-50"
+                    >
+                        <span
+                            *ngIf="isFormProcessing"
+                            class="spinner-border spinner-border-sm"
+                            role="status"
+                            aria-hidden="true"
+                        ></span>
+                        Sign in
+                    </button>
+                </div>
+                <!-- <app-checkbox-input [formControl]="f['rememberMe']" [label]="'Remember Me'"></app-checkbox-input> -->
+            </form>
+        </div>
+    </div>
+</div>
