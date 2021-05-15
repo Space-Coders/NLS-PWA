@@ -1,0 +1,102 @@
+<div class="container-fluid bg-white">
+    <div class="row p-4">
+        <div class="col">
+            <h6><a routerLink="/schedules" class="text-decoration-none"> Schedules </a> > #{{ schedule.id }}</h6>
+
+            <div class="row pt-4">
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-auto">
+                            <p [class.mb-0]="screenSize < 2">Module :</p>
+                            <p class="text-muted" *ngIf="screenSize < 2">{{ schedule.module }}</p>
+                            <p [class.mb-0]="screenSize < 2">Batch :</p>
+                            <p class="text-muted" *ngIf="screenSize < 2">{{ schedule.batch }}</p>
+                            <p [class.mb-0]="screenSize < 2">Hall :</p>
+                            <p class="text-muted" *ngIf="screenSize < 2">{{ schedule.hall }}</p>
+                        </div>
+                        <div class="col" *ngIf="screenSize > 1">
+                            <p class="text-muted">{{ schedule.module }}</p>
+                            <p class="text-muted">{{ schedule.batch }}</p>
+                            <p class="text-muted">{{ schedule.hall }}</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-auto">
+                            <p [class.mb-0]="screenSize < 2">Scheduled Date & Time :</p>
+                            <p class="text-muted" *ngIf="screenSize < 2">
+                                {{ schedule.scheduledDate | date: 'short':'IST' }}
+                            </p>
+                            <p [class.mb-0]="screenSize < 2">End Date & TIme :</p>
+                            <p class="text-muted" *ngIf="screenSize < 2">
+                                {{ schedule.endDate | date: 'short':'IST' }}
+                            </p>
+                            <p [class.mb-0]="screenSize < 2">Status :</p>
+                            <p
+                                [ngClass]="{
+                                    'text-info': schedule.status === scheduleStatus.INITIATED,
+                                    'text-success': schedule.status === scheduleStatus.ACCEPTED,
+                                    'text-danger': schedule.status === scheduleStatus.REJECTED
+                                }"
+                                *ngIf="screenSize < 2"
+                            >
+                                {{ schedule.status }}
+                            </p>
+                            <p></p>
+                            <button
+                                class="btn btn-outline-success btn-sm btn-block-sm"
+                                *ngIf="screenSize < 2"
+                                (click)="updateScheduleStatus(scheduleStatus.ACCEPTED)"
+                            >
+                                Accept
+                            </button>
+                            <button
+                                class="btn btn-outline-danger btn-sm btn-block-sm ml-2"
+                                *ngIf="screenSize < 2"
+                                (click)="updateScheduleStatus(scheduleStatus.REJECTED)"
+                            >
+                                Reject
+                            </button>
+                        </div>
+                        <div class="col" *ngIf="screenSize > 1">
+                            <p class="text-muted">{{ schedule.scheduledDate | date: 'short':'IST' }}</p>
+                            <p class="text-muted">{{ schedule.endDate | date: 'short':'IST' }}</p>
+                            <p
+                                [ngClass]="{
+                                    'text-info': schedule.status === scheduleStatus.INITIATED,
+                                    'text-success': schedule.status === scheduleStatus.ACCEPTED,
+                                    'text-danger': schedule.status === scheduleStatus.REJECTED
+                                }"
+                            >
+                                {{ schedule.status }}
+                            </p>
+                            <button
+                                class="btn btn-outline-success btn-sm btn-block-sm"
+                                (click)="updateScheduleStatus(scheduleStatus.ACCEPTED)"
+                            >
+                                Accept
+                            </button>
+                            <button
+                                class="btn btn-outline-danger btn-sm btn-block-sm ml-2"
+                                (click)="updateScheduleStatus(scheduleStatus.REJECTED)"
+                            >
+                                Reject
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- <div class="row">
+                        <div class="col">
+                            <button class="btn btn-outline-success btn-sm btn-block-sm">Accept</button>
+                            <button class="btn btn-outline-danger btn-sm ml-0 ml-md-2 mt-2 mt-md-0 btn-block-sm">
+                                Reject
+                            </button>
+                        </div>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
