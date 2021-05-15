@@ -5,3 +5,12 @@
 
 // bootstrap
 @import '~bootstrap/scss/bootstrap';
+// material icons
+@import '~@mdi/font/css/materialdesignicons.min.css';
+// angular calendar
+@import '~angular-calendar/css/angular-calendar.css';
+
+// customizations
+@import 'components/component-index';
+@import 'layouts/layouts-index';
+// @import 'common/common-index';
