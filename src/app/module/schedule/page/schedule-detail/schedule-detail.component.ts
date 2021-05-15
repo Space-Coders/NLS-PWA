@@ -5,6 +5,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ResizeService } from '@app/service/resize.service';
 import { SweetAlertService } from '@app/service/sweet-alert.service';
 import { ScheduleService } from '@data/service/schedule/schedule.service';
+import { LabRequestService } from '@data/service/lab-request/lab-request.service';
 
 import { ISchedule } from '@data/schema/schedule';
 import { ScheduleStatus } from '@data/enum/scheduleStatus';
@@ -29,6 +30,7 @@ export class ScheduleDetailComponent implements OnInit {
         private route: ActivatedRoute,
         private resizeService: ResizeService,
         private scheduleService: ScheduleService,
+        private labRequestService: LabRequestService,
         private sweetAlertService: SweetAlertService,
         private changeDetectorRef: ChangeDetectorRef,
         private formBuilder: FormBuilder,
@@ -71,5 +73,21 @@ export class ScheduleDetailComponent implements OnInit {
         return this.softwareForm.controls;
     }
 
-    requestSoftware() {}
+    requestSoftware() {
+        if (this.softwareForm.valid) {
+            this.isFormProcessing = true;
+            const { software, adHoc } = this.softwareForm.getRawValue();
+
+            this.labRequestService.createLabRequest({ software, adHoc, scheduleId: this.schedule.id }).subscribe(
+                () => {
+                    this.sweetAlertService.success('Successfully requested softwares');
+                    this.isFormProcessing = false;
+                },
+                (error) => {
+                    console.error(error);
+                    this.isFormProcessing = false;
+                },
+            );
+        }
+    }
 }
