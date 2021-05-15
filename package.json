@@ -19,6 +19,7 @@
     "@angular/platform-browser": "~11.2.4",
     "@angular/platform-browser-dynamic": "~11.2.4",
     "@angular/router": "~11.2.4",
+    "@angular/service-worker": "~11.2.4",
     "@mdi/font": "^5.9.55",
     "angular-calendar": "^0.28.24",
     "bootstrap": "^4.6.0",

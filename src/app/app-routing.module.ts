@@ -30,6 +30,11 @@ const routes: Routes = [
                 path: 'dashboard',
                 loadChildren: () => import('@module/dashboard/dashboard.module').then((m) => m.DashboardModule),
             },
+            {
+                path: 'notifications',
+                loadChildren: () =>
+                    import('@module/notification/notification.module').then((m) => m.NotificationModule),
+            },
         ],
     },
     // Fallback when no prior routes is matched
