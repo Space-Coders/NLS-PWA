@@ -14,6 +14,7 @@ import { BootstrapModule } from './bootstrap.module';
 
 // components
 import { TextInputComponent } from './component/form/text-input/text-input.component';
+import { SizeDetectorComponent } from './component/size-detector/size-detector.component';
 
 @NgModule({
     imports: [
@@ -28,16 +29,17 @@ import { TextInputComponent } from './component/form/text-input/text-input.compo
         }),
         BootstrapModule,
     ],
-    declarations: [TextInputComponent],
+    declarations: [TextInputComponent, SizeDetectorComponent],
     exports: [
         CommonModule,
         FormsModule,
         ReactiveFormsModule,
         RouterModule,
-        TextInputComponent,
         NgScrollbarModule,
         CalendarModule,
         BootstrapModule,
+        TextInputComponent,
+        SizeDetectorComponent,
     ],
 })
 export class SharedModule {}
