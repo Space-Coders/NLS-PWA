@@ -6,6 +6,7 @@
         "auth",
         "shared",
         "base",
-        "dashboard"
+        "dashboard",
+        "notifications"
     ]
 }
