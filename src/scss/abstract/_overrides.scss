@@ -1,0 +1,23 @@
+// color overrides
+$primary: $prime-blue;
+
+$theme-colors: (
+    'sumi-ink': $sumi-ink,
+    'dr-white': $dr-white,
+);
+
+// background overrides
+$body-bg: $prime-background;
+
+// font overrides
+$font-family-sans-serif: 'Work Sans', Roboto, 'Helvetica Neue', -apple-system, BlinkMacSystemFont, sans-serif,
+    'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+// $font-size-base: 0.875rem;
+
+// table overrides
+$table-striped-order: even;
+$table-accent-bg: rgba($prime-info, 0.03);
+
+// badge overrides
+$badge-font-weight: $badge-font-weight;
+$badge-border-radius: $badge-border-radius;
