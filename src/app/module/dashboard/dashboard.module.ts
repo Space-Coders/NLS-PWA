@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common';
 import { SharedModule } from '@shared/shared.module';
 
 // resolvers
+import { ScheduleListResolver } from '@data/resolver/schedule/schedule-list.resolver';
 
 // components
 import { DashboardComponent } from './page/dashboard/dashboard.component';
@@ -17,6 +18,6 @@ import { DashboardRoutingModule } from './dashboard.routing';
 @NgModule({
     imports: [CommonModule, SharedModule, DashboardRoutingModule],
     declarations: [DashboardComponent, NotFoundComponent],
-    providers: [],
+    providers: [ScheduleListResolver],
 })
 export class DashboardModule {}

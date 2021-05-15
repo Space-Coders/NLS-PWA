@@ -16,7 +16,6 @@ export class ErrorInterceptor implements HttpInterceptor {
                 if (error) {
                     switch (error.status) {
                         case 400:
-                        case 401:
                             if (error.error.errors) {
                                 const modalStateErrors = [];
                                 for (const key in error.error.errors) {
@@ -32,12 +31,12 @@ export class ErrorInterceptor implements HttpInterceptor {
                                 this.sweetAlertService.error(error.error);
                             }
                             break;
-                        // case 401:
-                        //     this.sweetAlertService.unauthorized(
-                        //         'Your session has ended. Please login again to continue',
-                        //         'Back to sign in',
-                        //     );
-                        //     break;
+                        case 401:
+                            this.sweetAlertService.unauthorized(
+                                'Unauthorized. Please login again to continue',
+                                'Back to sign in',
+                            );
+                            break;
                         case 404:
                             this.router.navigateByUrl('/not-found');
                             break;

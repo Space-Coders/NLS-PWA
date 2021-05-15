@@ -1,7 +1,12 @@
+// core
 import { Component, ChangeDetectionStrategy, ViewChild, TemplateRef, OnInit } from '@angular/core';
-import { startOfDay, endOfDay, subDays, addDays, endOfMonth, isSameDay, isSameMonth, addHours } from 'date-fns';
+import { ActivatedRoute } from '@angular/router';
 import { Subject } from 'rxjs';
+import { startOfDay, endOfDay, subDays, addDays, endOfMonth, isSameDay, isSameMonth, addHours } from 'date-fns';
 import { CalendarEvent, CalendarEventAction, CalendarEventTimesChangedEvent, CalendarView } from 'angular-calendar';
+
+// schemas
+import { ISchedule } from '@data/schema/schedule';
 
 const colors: any = {
     red: {
@@ -26,6 +31,8 @@ const colors: any = {
 })
 export class DashboardComponent implements OnInit {
     @ViewChild('modalContent', { static: true }) modalContent: TemplateRef<any>;
+
+    schedules: ISchedule[];
 
     view: CalendarView = CalendarView.Month;
 
@@ -59,51 +66,66 @@ export class DashboardComponent implements OnInit {
     refresh: Subject<any> = new Subject();
 
     events: CalendarEvent[] = [
-        {
-            start: subDays(startOfDay(new Date()), 1),
-            end: addDays(new Date(), 1),
-            title: 'A 3 day event',
-            color: colors.red,
-            actions: this.actions,
-            allDay: true,
-            resizable: {
-                beforeStart: true,
-                afterEnd: true,
-            },
-            draggable: true,
-        },
-        {
-            start: startOfDay(new Date()),
-            title: 'An event with no end date',
-            color: colors.yellow,
-            actions: this.actions,
-        },
-        {
-            start: subDays(endOfMonth(new Date()), 3),
-            end: addDays(endOfMonth(new Date()), 3),
-            title: 'A long event that spans 2 months',
-            color: colors.blue,
-            allDay: true,
-        },
-        {
-            start: addHours(startOfDay(new Date()), 2),
-            end: addHours(new Date(), 2),
-            title: 'A draggable and resizable event',
-            color: colors.yellow,
-            actions: this.actions,
-            resizable: {
-                beforeStart: true,
-                afterEnd: true,
-            },
-            draggable: true,
-        },
+        // {
+        //     start: subDays(startOfDay(new Date()), 1),
+        //     end: addDays(new Date(), 1),
+        //     title: 'A 3 day event',
+        //     color: colors.red,
+        //     actions: this.actions,
+        //     allDay: true,
+        //     resizable: {
+        //         beforeStart: true,
+        //         afterEnd: true,
+        //     },
+        //     draggable: true,
+        // },
+        // {
+        //     start: startOfDay(new Date()),
+        //     title: 'An event with no end date',
+        //     color: colors.yellow,
+        //     actions: this.actions,
+        // },
+        // {
+        //     start: subDays(endOfMonth(new Date()), 3),
+        //     end: addDays(endOfMonth(new Date()), 3),
+        //     title: 'A long event that spans 2 months',
+        //     color: colors.blue,
+        //     allDay: true,
+        // },
+        // {
+        //     start: addHours(startOfDay(new Date()), 2),
+        //     end: addHours(new Date(), 2),
+        //     title: 'A draggable and resizable event',
+        //     color: colors.yellow,
+        //     actions: this.actions,
+        //     resizable: {
+        //         beforeStart: true,
+        //         afterEnd: true,
+        //     },
+        //     draggable: true,
+        // },
     ];
 
-    activeDayIsOpen: boolean = true;
+    // activeDayIsOpen: boolean = true;
+    activeDayIsOpen: boolean = false;
 
-    constructor() {}
+    constructor(private route: ActivatedRoute) {}
 
-    ngOnInit() {}
+    ngOnInit() {
+        this.route.data.subscribe((data) => {
+            this.schedules = data.schedules;
+
+            const ev = this.schedules.map((schedule) => ({
+                start: new Date(schedule.scheduledDate),
+                end: new Date(schedule.endDate),
+                title: `${schedule.module} - ${schedule.batch} - ${schedule.hall}`,
+                color: colors.yellow,
+                actions: this.actions,
+            }));
+
+            this.events = [...this.events, ...ev];
+        });
+    }
 
     dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
         if (isSameMonth(date, this.viewDate)) {

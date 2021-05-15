@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 // resolvers
+import { ScheduleListResolver } from '@data/resolver/schedule/schedule-list.resolver';
 
 // components
 import { DashboardComponent } from './page/dashboard/dashboard.component';
@@ -18,6 +19,9 @@ export const routes: Routes = [
         path: 'home',
         runGuardsAndResolvers: 'always',
         component: DashboardComponent,
+        resolve: {
+            schedules: ScheduleListResolver,
+        },
     },
     {
         path: 'not-found',
