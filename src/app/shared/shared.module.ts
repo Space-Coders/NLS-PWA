@@ -5,7 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
 // external module
-import { NgScrollbarModule } from 'ngx-scrollbar';
+//import { NgScrollbarModule } from 'ngx-scrollbar';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 
@@ -22,7 +22,7 @@ import { SizeDetectorComponent } from './component/size-detector/size-detector.c
         FormsModule,
         ReactiveFormsModule,
         RouterModule,
-        NgScrollbarModule,
+//NgScrollbarModule,
         CalendarModule.forRoot({
             provide: DateAdapter,
             useFactory: adapterFactory,
@@ -35,7 +35,7 @@ import { SizeDetectorComponent } from './component/size-detector/size-detector.c
         FormsModule,
         ReactiveFormsModule,
         RouterModule,
-        NgScrollbarModule,
+       // NgScrollbarModule,
         CalendarModule,
         BootstrapModule,
         TextInputComponent,
