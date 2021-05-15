@@ -24,4 +24,8 @@ export class ScheduleService {
     patchScheduleStatus(id: number, status: ScheduleStatus) {
         return this.http.patch<ISchedule>(this.baseUrl + `/schedules/${id}/status`, { status });
     }
+
+    updateSchedule(id: number, status: ScheduleStatus) {
+        return this.http.patch<ISchedule>(this.baseUrl + `/schedules/${id}/status`, { status });
+    }
 }

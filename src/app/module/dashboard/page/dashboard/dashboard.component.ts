@@ -5,8 +5,12 @@ import { Subject } from 'rxjs';
 import { startOfDay, endOfDay, subDays, addDays, endOfMonth, isSameDay, isSameMonth, addHours } from 'date-fns';
 import { CalendarEvent, CalendarEventAction, CalendarEventTimesChangedEvent, CalendarView } from 'angular-calendar';
 
+// services
+import { ScheduleService } from '@data/service/schedule/schedule.service';
+
 // schemas
 import { ISchedule } from '@data/schema/schedule';
+import { ScheduleStatus } from '@data/enum/scheduleStatus';
 
 const colors: any = {
     red: {
@@ -37,6 +41,10 @@ export class DashboardComponent implements OnInit {
     view: CalendarView = CalendarView.Month;
 
     CalendarView = CalendarView;
+
+    acceptLecture: boolean;
+
+    rejectLecture: boolean;
 
     viewDate: Date = new Date();
 
@@ -70,7 +78,7 @@ export class DashboardComponent implements OnInit {
     // activeDayIsOpen: boolean = true;
     activeDayIsOpen: boolean = false;
 
-    constructor(private route: ActivatedRoute, private router: Router) {}
+    constructor(private route: ActivatedRoute, private router: Router, private scheduleService: ScheduleService) {}
 
     ngOnInit() {
         this.route.data.subscribe((data) => {
@@ -84,6 +92,7 @@ export class DashboardComponent implements OnInit {
                 actions: this.actions,
                 meta: {
                     scheduleId: schedule.id,
+                    ScheduleStatus: schedule.status,
                 },
             }));
 
@@ -137,6 +146,27 @@ export class DashboardComponent implements OnInit {
                 },
             },
         ];
+    }
+
+    acceptSchedule(event: CalendarEvent) {
+        console.log('lecture accepted', event);
+        this.scheduleService.updateSchedule(event.meta.scheduleId, ScheduleStatus.ACCEPTED).subscribe(() => {
+            console.log('success');
+            //     this.scheduleService.getSchedule(event.meta.schedule).subscribe((data) => {
+
+            //         ScheduleStatus.ACCEPTED;
+
+            //    }),
+            (error) => console.log(error);
+        });
+    }
+
+    rejectSchedule(event: CalendarEvent) {
+        console.log('lecture rejected');
+        this.scheduleService.updateSchedule(event.meta.scheduleId, ScheduleStatus.REJECTED).subscribe(
+            () => console.log('success'),
+            (error) => console.log(error),
+        );
     }
 
     deleteEvent(eventToDelete: CalendarEvent) {
