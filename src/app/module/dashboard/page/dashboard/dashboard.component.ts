@@ -179,6 +179,11 @@ export class DashboardComponent implements OnInit {
         console.log("lecture accepted")
     }
 
+    rejectchedule(){
+        console.log("lecture rejected")
+    }
+
+
 
     deleteEvent(eventToDelete: CalendarEvent) {
         this.events = this.events.filter((event) => event !== eventToDelete);
