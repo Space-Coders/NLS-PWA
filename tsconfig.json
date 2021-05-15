@@ -1,22 +1,16 @@
-/* To learn more about this file see: https://angular.io/config/tsconfig. */
 {
     "compileOnSave": false,
     "compilerOptions": {
         "baseUrl": "./src",
+        "module": "es2020",
         "outDir": "./dist/out-tsc",
-        "forceConsistentCasingInFileNames": true,
-        "strict": true,
-        "noImplicitReturns": true,
-        "noFallthroughCasesInSwitch": true,
         "sourceMap": true,
         "declaration": false,
-        "downlevelIteration": true,
-        "experimentalDecorators": true,
         "moduleResolution": "node",
-        "importHelpers": true,
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
         "target": "es2015",
-        "module": "es2020",
-        "lib": ["es2018", "dom"],
+        "typeRoots": ["node_modules/@types"],
         "paths": {
             "@app/*": ["app/core/*"],
             "@shared/*": ["app/shared/*"],
@@ -24,12 +18,7 @@
             "@module/*": ["app/module/*"],
             "@data/*": ["app/data/*"],
             "@layout/*": ["app/layout/*"],
-        }
-    },
-    "angularCompilerOptions": {
-        "enableI18nLegacyMessageIdFormat": false,
-        "strictInjectionParameters": true,
-        "strictInputAccessModifiers": true,
-        "strictTemplates": true
+        },
+        "lib": ["es2019", "dom"]
     }
 }
