@@ -8,12 +8,14 @@ import { RouterModule } from '@angular/router';
 //import { NgScrollbarModule } from 'ngx-scrollbar';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import { DataTablesModule } from 'angular-datatables';
 
 // bootstrap module
 import { BootstrapModule } from './bootstrap.module';
 
 // components
 import { TextInputComponent } from './component/form/text-input/text-input.component';
+import { CheckboxInputComponent } from './component/form/checkbox-input/checkbox-input.component';
 import { SizeDetectorComponent } from './component/size-detector/size-detector.component';
 
 @NgModule({
@@ -22,23 +24,26 @@ import { SizeDetectorComponent } from './component/size-detector/size-detector.c
         FormsModule,
         ReactiveFormsModule,
         RouterModule,
-//NgScrollbarModule,
+        //NgScrollbarModule,
         CalendarModule.forRoot({
             provide: DateAdapter,
             useFactory: adapterFactory,
         }),
+        DataTablesModule,
         BootstrapModule,
     ],
-    declarations: [TextInputComponent, SizeDetectorComponent],
+    declarations: [TextInputComponent, CheckboxInputComponent, SizeDetectorComponent],
     exports: [
         CommonModule,
         FormsModule,
         ReactiveFormsModule,
         RouterModule,
-       // NgScrollbarModule,
+        // NgScrollbarModule,
+        DataTablesModule,
         CalendarModule,
         BootstrapModule,
         TextInputComponent,
+        CheckboxInputComponent,
         SizeDetectorComponent,
     ],
 })

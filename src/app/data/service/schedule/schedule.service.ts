@@ -21,7 +21,11 @@ export class ScheduleService {
         return this.http.get<ISchedule>(this.baseUrl + `/schedules/${id}`);
     }
 
-    updateSchedule(id: number, status: ScheduleStatus){
-        return this.http.patch<ISchedule>(this.baseUrl + `/schedules/${id}/status`, {status});
+    patchScheduleStatus(id: number, status: ScheduleStatus) {
+        return this.http.patch<ISchedule>(this.baseUrl + `/schedules/${id}/status`, { status });
+    }
+
+    updateSchedule(id: number, status: ScheduleStatus) {
+        return this.http.patch<ISchedule>(this.baseUrl + `/schedules/${id}/status`, { status });
     }
 }
