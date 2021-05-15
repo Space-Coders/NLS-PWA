@@ -5,6 +5,7 @@
         "layout",
         "auth",
         "shared",
-        "base"
+        "base",
+        "dashboard"
     ]
 }
