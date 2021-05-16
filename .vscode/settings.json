@@ -9,6 +9,7 @@
         "dashboard",
         "notifications",
         "schedules",
-        "labs"
+        "labs",
+        "ci/cd"
     ]
 }
