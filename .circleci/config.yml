@@ -40,7 +40,6 @@ aliases:
               npm install
               npm run build:prod
               cd dist
-              cd nls-pwa
               zip ../build.zip -r *.[^.]*
               echo "build successful"
 jobs:
