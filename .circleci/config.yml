@@ -40,8 +40,7 @@ aliases:
               npm install
               npm run build:prod
               cd dist
-              cd nls-pwa
-              zip ../../nls-pwa.zip -r *.[^.]*
+              zip ../build.zip -r *.[^.]*
               echo "build successful"
 jobs:
     build:
@@ -65,12 +64,12 @@ jobs:
                   command: |
                       if [ "${CIRCLE_BRANCH}" == "main" ]
                       then
-                        aws --region ${AWS_REGION} s3 sync ~/repo/nls-pwa s3://${AWS_BUCKET_PRD} --delete
+                        aws --region ${AWS_REGION} s3 sync ~/repo/build s3://${AWS_BUCKET_PRD} --delete
                       elif [ "${CIRCLE_BRANCH}" == "stg" ]
                       then
-                        aws --region ${AWS_REGION} s3 sync ~/repo/nls-pwa s3://${AWS_BUCKET_STG} --delete
+                        aws --region ${AWS_REGION} s3 sync ~/repo/build s3://${AWS_BUCKET_STG} --delete
                       else
-                        aws --region ${AWS_REGION} s3 sync ~/repo/nls-pwa s3://${AWS_BUCKET_DEV} --delete
+                        aws --region ${AWS_REGION} s3 sync ~/repo/build s3://${AWS_BUCKET_DEV} --delete
                       fi
     deploy-to-aws-cloudfront:
         executor: app-executor
